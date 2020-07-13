@@ -1,0 +1,60 @@
+﻿@using Web.Models
+@model List<SANPHAM>
+@{
+    Layout = null;
+}
+
+
+<div class="site-section">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-12">
+                <span class="backdrop text-center">Sản phẩm khác</span>
+            </div>
+                <div class="col-md-6">
+                    <div class="heading-39101 mb-5">
+                        <a href="/Home/LoaiSP?IDLoai=8"><h3>RAM</h3></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="heading-39101 mb-5">
+                        <a href="/Home/LoaiSP?IDLoai=8"><h3>CPU</h3></a>
+                    </div>
+                </div>
+            </div>
+        <div class="owl-carousel slide-one-item">
+            <div class="row">
+                <div class="col-md-6">
+@foreach (var item in ViewBag.sklist)
+{
+                    <div class="testimonial-39191 d-flex">
+
+                        <div class="mr-4">
+                            <img src="~/Images/laptop/@item.HinhMinhHoa" alt="Image" class="img-fluid" style="height:200px;width:300px">
+                        </div>
+                        <div>
+                            <blockquote>@item.TenSP</blockquote>
+                            <p>Giá: @string.Format("{0:0,0}", item.DonGia) VND</p>
+                        </div>
+                    </div>
+}
+                </div>
+                <div class="col-md-6">
+@foreach (var item in Model)
+{
+                    <div class="testimonial-39191 d-flex">
+                        <div class="mr-4">
+                            <img src="~/Images/laptop/@item.HinhMinhHoa" alt="Image" class="img-fluid" style="height:200px;width:300px">
+                        </div>
+                        <div>
+                            <blockquote>@item.TenSP</blockquote>
+                            <p>Giá: @string.Format("{0:0,0}", item.DonGia) VND</p>
+                        </div>
+                    </div>
+}
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

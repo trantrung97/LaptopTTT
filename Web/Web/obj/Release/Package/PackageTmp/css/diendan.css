@@ -1,0 +1,17 @@
+﻿
+.ddform{
+    margin:5%;
+    padding:5%;
+   background-color:#D3D3D3;
+  border-radius:20px;
+       }
+.ddbl{ 
+    
+   background-color:white;
+    border-radius:20px;
+    width:100%;
+    margin-bottom:5px;
+}
+.ddbl tr td{
+     padding-left:20px;
+}

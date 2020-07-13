@@ -1,0 +1,169 @@
+﻿@using Web.Models
+@model SANPHAM
+@{
+    ViewBag.Title = "ChiTietSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    if(Session["KhachHang"]==mull)
+    {
+        confirm('Bạn cần đăng nhập để dễ mua hàng');
+    }
+
+</script>
+<style>
+    a{
+        color:black;
+    }
+</style>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="~/css/rating/jquery.rateit.js"></script>
+<link href="~/css/rating/rateit.css" rel="stylesheet" />
+<link href="~/css/Detail.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="title" style="font-size:25px; padding:20px 0px">
+    <a style="font-family:'Times New Roman'" class="navhead" href="@Url.Action("Index","Home")"> Trang chủ </a> <i style="color:#4e9df7" class="material-icons">navigate_next</i> <a href="@Url.Action("Index","Home")" style="font-family:'Times New Roman'" class="navhead">@Model.TenSP</a>
+    <hr>
+</div>
+
+<table class="auto-style2">
+    <tr>
+        <td class="ct_tieude" colspan="2">CHI TIẾT SẢN PHẨM</td>
+    </tr>
+    <tr>
+        <td rowspan="8" class="ct_hinhanh">
+            <div class="anh"><img src="~/Images/laptop/@Model.HinhMinhHoa" /></div>
+        </td>
+        <td class="ct_ten">
+            @Model.TenSP
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td class="ct_dongia">
+            @string.Format("{0:0,0}", Model.DonGia) VND
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>-Bảo hành:24 Tháng , Pin và sạc bảo hành 12 tháng, Đổi mới trong 15 ngày</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>-Kho hàng: còn hàng</td>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>-Miễn phí vận chuyển </td>
+        <td rowspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+        <td>-Tặng chuột,lót chuột và một số khuyến mãi khác&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <div class="input-group col-md-6 d-flex mb-3">
+                <span class="input-group-btn " style="margin-right:40px" >
+                    <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="" onclick="Tru()">
+                        <i>-</i>
+                    </button>
+                </span>
+                <input type="text" id="txtSL" name="quantity" style="width:50%"  class="form-control input-number" value="1" min="1" max="100">
+                <span class="input-group-btn ">
+                    <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="" onclick="Cong()">
+                        <i>+</i>
+                    </button>
+                </span>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        @if (Model.SoLuong == 0)
+        {
+            <td>
+                <div >
+                    <h1 style="color:red;font-weight:bold">HẾT HÀNG</h1>
+                </div>
+            </td>
+            <td>&nbsp;</td>
+        }
+        else
+        {
+        <td>
+            <div class="buttom">
+                <input type="button" id="btn-Cart" value="Thêm Vào Giỏ Hàng" onclick="DatHang(@Model.MaSP)" />
+            </div>
+        </td>
+        <td>&nbsp;</td>
+        }
+    </tr>
+
+</table>
+<br />
+<br />
+
+<table>
+    <tr class="ct_ND1">
+        <td> @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.NoiDung))</td>
+    </tr>
+    <tr class="ct_ND2">
+        <td> @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.CauHinh))</td>
+    </tr>
+</table>
+
+
+<h1 style="text-align:center">Đánh giá</h1>
+
+    @foreach (var item in ViewBag.danhgia)
+    {
+        <table class="ddbl">
+            <tr>
+                <td style="font-size:20px;font-weight:bold">
+                    @item.TenKH
+                    
+                </td>
+                <td>
+                    <input readonly id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" value="@item.danhgia1">
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size:12px">
+                    @item.time
+                </td>
+                <td >
+                  
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <p>@item.comments</p>
+
+                </td>
+                
+            </tr>
+
+        </table>
+    }
+    <br />
+    <hr />
+
+    <form action="/Home/danhgia" method="post">
+        <input name="masp"  style="display:none" value="@Model.MaSP" />
+        <input name="tenkh" readonly style="background-color:#D3D3D3;border:none;float:left;font-size:20px;font-weight:bold;height:40px" value="@Session["TenKH"]" />
+       
+        @Html.DropDownList("sao", new List<SelectListItem>
+        {
+         new SelectListItem {Text = "1 sao", Value = "1"},
+         new SelectListItem {Text = "2 sao", Value = "2"},
+         new SelectListItem {Text = "3 sao", Value = "3"},
+         new SelectListItem {Text = "4 sao", Value = "4"},
+         new SelectListItem {Text = "5 sao", Value = "5"},
+         
+        }, "--- đánh giá ---", new { style = "width:10%;float:left;height:40px" })
+        <input class="form-control input-md" placeholder="Viết bình luận..." type="text" name="binhluan" />
+        <button style="float:right" class="btn btn-primary" type="submit">Gửi</button>
+    </form>
+

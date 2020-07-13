@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "traodoi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/css/diendan.css" rel="stylesheet" />
+
+<hr /><br />
+<h1 style="text-align:center">TRAO ĐỔI</h1>
+<div class="ddform">
+    @foreach (var item in Model)
+    {
+        <table class="ddbl">
+            <tr>
+                <td style="font-size:20px;font-weight:bold">
+                   @item.TenKH
+                </td>
+            </tr>
+            <tr>
+                <td style="font-size:12px">
+                    @item.TG
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p >@item.NoiDung</p>
+
+                </td>
+            </tr>
+
+        </table>
+    }
+    <br />
+    <hr />
+
+    <form action="/diendan/traodoi"  method="post">
+        <input name="tenkh" readonly style="background-color:#D3D3D3;border:none" value="@Session["TenKH"]" />
+        <input class="form-control input-md" placeholder="Viết bình luận..." type="text" name="binhluan" />
+        <button  style="float:right" class="btn btn-primary"  type="submit">Gửi</button>
+    </form>
+</div>
+
+<br /><br /><br /><br /><br />

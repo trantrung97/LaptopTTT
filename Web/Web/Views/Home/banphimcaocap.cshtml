@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+@using Web.Models
+@model List<SANPHAM>
+
+<link href="~/Content/index.css" rel="stylesheet" />
+<div class="row">
+@foreach (var item in Model)
+{
+    <div class="col-lg-4 col-md-6 mb-2">
+        <a href="/Home/ChiTietSP?ID=@item.MaSP" style="text-decoration:none;">
+            <div class="person-29191 text-center">
+                <img src="~/Images/laptop/@item.HinhMinhHoa" class="img-thumbnail" alt="Sản phẩm 1" style="height:300px">
+                <div class="px-4">
+                    <h2 class="mb-2">@item.TenSP</h2>
+                    <p class="caption mb-4">@string.Format("{0:0,0}", item.DonGia) VND</p>
+                    <a class=" btn btn-default" style="background-color:#FFFF00;font-weight:bold" href="/Home/ChiTietSP?ID=@item.MaSP"><span class="glyphicon glyphicon-shopping-cart"> Mua</span></a>
+                    
+                </div>
+            </div>
+            </a>
+</div>
+    }
+</div>

@@ -1,0 +1,419 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - TTT</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link rel="stylesheet" href="~/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="~/css/aos.css">
+    <link href="~/css/login.css" rel="stylesheet" />
+    <link href="~/css/index.css" rel="stylesheet" />
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="~/css/style.css">
+    <link href="~/css/register.css" rel="stylesheet" />
+  
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+    <div class="site-wrap" id="home-section">
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+        <header class="site-navbar site-navbar-target" role="banner" style="background-color:#efba6c">
+            <div class="container">
+                <div class="row align-items-center position-relative">
+                    <div class="col-3 ">
+                        <div class="site-logo">
+                            <a href="@Url.Action("Index","Home")" class="font-weight-bold">
+
+                                <img src="~/images/logo.png" alt="Image" class="img-fluid">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-9  text-right">
+
+                        <span class="d-inline-block d-lg-none"><a href="#" class="text-white site-menu-toggle js-menu-toggle py-5 text-white"><span class="icon-menu h3 text-white"></span></a></span>
+
+                        <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
+                            <ul class="site-menu main-menu js-clone-nav ml-auto ">
+                                <li><a href="@Url.Action("Index","Home")" class="nav-link">Trang chủ</a></li>
+                                <li><a href="@Url.Action("About","Home")" class="nav-link">Giới thiệu</a></li>
+                                <li><a href="@Url.Action("Tintuc","Home")" class="nav-link">Tin tức</a></li>
+                                <li><a href="@Url.Action("traodoi","diendan")" class="nav-link">Diễn đàn</a></li>
+
+
+                                @{
+                                    if (Session["TenKH"] == null)
+                                    {
+
+                                        <li class="dropdown" >
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Đăng nhập</b></a>
+                                            <ul id="login-dp" class="dropdown-menu">
+                                                <li>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+
+                                                            <form class="form" role="form" method="post" action="/DKDN/DangNhap" id="login-nav">
+                                                                <div class="form-group">
+                                                                    <label class="sr-only">Tài khoản</label>
+                                                                    <input type="text" class="form-control" id="TaiKhoan" name="TaiKhoan" placeholder="account" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="sr-only">Mật khẩu</label>
+                                                                    <input type="password" class="form-control" id="MK" name="MK" placeholder="Password" required>
+
+                                                                </div>
+                                                                <p id="DN-ThongBao">@Session["ThongBao"]</p>
+                                                                <div class="form-group">
+                                                                    <button type="submit" class="btn btn-primary btn-block" id="sub-DN">Đăng nhập</button>
+                                                                </div>
+                                                                <div class="checkbox">
+                                                                    <label>
+                                                                        <input type="checkbox"> keep me logged-in
+                                                                    </label>
+                                                                </div>
+
+                                                            </form>
+                                                        </div>
+
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Đăng ký</b></a>
+                                            <ul id="login-dp" class="dropdown-menu" style="margin-right:200px">
+                                                <div class="card bg-light">
+                                                    <article class="card-body mx-auto" style="max-width: 400px;">
+                                                        <h4 class="card-title mt-3 text-center">ĐĂNG KÝ</h4>
+
+                                                        <form  role="form" method="post" action="/DKDN/DangKy">
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                                                </div>
+                                                                <input name="HoTen" id="HoTen" placeholder="Họ và Tên" class="form-control input-md" required="" type="text">
+                                                            </div> <!-- form-group// -->
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                                                </div>
+                                                                <input name="Email" id="Email" placeholder="Email" class="form-control input-md" required="" type="email">
+
+                                                            </div> <!-- form-group// -->
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                                                                </div>
+                                                                
+                                                                <input name="SDT" id="SDT" placeholder="Điện thoại" class="form-control input-md" required="" type="number">
+
+                                                            </div> <!-- form-group// -->
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                                                                </div>
+                                                                <input name="DiaChi" id="DiaChi" placeholder="địa chỉ" class="form-control input-md" required="" type="text">
+                                                            </div> <!-- form-group end.// -->
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                                                </div>
+                                                                <input name="TenDN" id="TenDN" placeholder="Tên đăng nhập" class="form-control input-md" required="" type="text">
+                                                            </div> <!-- form-group// -->
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                                                </div>
+                                                                <input name="MatKhau" id="MatKhau" placeholder="Password" class="form-control input-md" required="" type="password">
+                                                            </div> <!-- form-group// -->
+                                                            <div class="form-group input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                                                </div>
+                                                                <input name="LaiMK" id="LaiMK" placeholder="nhập lại Password" class="form-control input-md" required="" type="password">
+                                                            </div> <!-- form-group// -->
+                                                            <div class="form-group input-group">
+                                                                <div class="g-recaptcha" data-sitekey="6Lda_-wUAAAAAPU7RAhWCcOZKzmrJu_GaLRtRsR6"></div>
+                                                                
+                                                            </div> <!-- form-group// -->
+                                                            <div class="form-group">
+                                                                <button type="submit" class="btn btn-primary btn-block"> tạo tài khoản  </button>
+                                                            </div> <!-- form-group// -->
+                                                           
+                                                        </form>
+                                                    </article>
+                                                </div> <!-- card.// -->
+                                            </ul>
+                                        </li>
+                                                
+                                                }
+                                                else
+                                                {
+
+                                                <li class="dropdown">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Session["TenKH"]</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="/GioHang/giohangcuatoi">Giỏ hàng của tôi</a></li>
+                                                        <li><a href="@Url.Action("Edit/"+@Session["KhachHang"],"KHACH_HANG")">Sửa thông tin</a></li>
+
+                                                        <li><a href="@Url.Action("DangXuat","DKDN")">Đăng xuất</a></li>
+                                                    </ul>
+                                                </li>
+
+                                                <li class="nav-item cta cta-colored" id="cart">
+                                                    <a href="/GioHang/GioHang" class="nav-link">
+
+                                                        <span>@Session["TongSL"] Sản phẩm - @Session["TongTien"] VND</span>
+                                                    </a>
+                                                </li>
+                                                }
+                                                }
+
+</nav>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+
+        <ul class="nav nav-pills nav-justified" style="font-size:17px">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">LAPTOP</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/Home/LoaiSP?IDLoai=2">GAMING</a>
+                    <a class="dropdown-item" href="/Home/LoaiSP?IDLoai=3">VĂN PHÒNG</a>
+                    <a class="dropdown-item" href="/Home/LoaiSP?IDLoai=1">CAO CẤP</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Bàn Phím</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="~/Home/LoaiSP?IDLoai=4">GAMING</a>
+                    <a class="dropdown-item" href="/Home/LoaiSP?IDLoai=5">VĂN PHÒNG</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Chuột</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/Home/LoaiSP?IDLoai=6">GAMING</a>
+                    <a class="dropdown-item" href="/Home/LoaiSP?IDLoai=7">VĂN PHÒNG</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/LoaiSP?IDLoai=10">HDD|SSD</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/LoaiSP?IDLoai=9">RAM</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/LoaiSP?IDLoai=8">CPU</a>
+            </li>
+        </ul>
+
+        @RenderBody();
+
+    </div>
+            <form action="/Home/contact" method="post">
+                <div class="col-xs-12">
+
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <h1>Contact Us</h1>
+                        </div>
+
+                        <div class="col-md-6">
+                            <input class="form-control" id="firstName" name="name" placeholder="Your Name" type="text">
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" id="organization" name="organization" placeholder="Company or Organization" type="text">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <input class="form-control" name="email" placeholder="Email" type="text">
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" name="phone" placeholder="Phone" type="text">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <textarea class="form-control" name="comment" placeholder="Comments"></textarea>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <button name="singlebutton" class="btn btn-primary" id="sub-DangKy" type="submit" value="" onclick="gui()">Submit</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        
+        <footer class="site-footer bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h2 class="footer-heading mb-3">Theo dỗi chúng tôi</h2>
+                        <div class="row">
+                            <div class="col-4 gal_col">
+                                <a href="https://www.facebook.com/"><img src="~/Images/facebook.png" alt="Image" class="img-fluid"></a>
+                            </div>
+                            <div class="col-4 gal_col">
+                                <a href="https://chat.zalo.me"><img src="~/Images/zalo.png" alt="Image" class="img-fluid"></a>
+                            </div>
+                            <div class="col-4 gal_col">
+                                <a href="https://twitter.com"><img src="~/Images/twitter.png" alt="Image" class="img-fluid"></a>
+                            </div>
+                            <div class="col-4 gal_col">
+                                <a href="https://www.google.com"><img src="~/Images/gmail.png" alt="Image" class="img-fluid"></a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-8 ml-auto">
+                        <div class="row">
+                            <div class="col-lg-6 ml-auto">
+                                <h2 class="footer-heading mb-4">Thông tin cửa hàng</h2>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Giới thiệu về cửa hàng</a></li>
+                                    <li><a href="#">Thông tin liên hệ</a></li>
+                                    <li><a href="#">Tư vấn mua hàng (miễn phí):18006601</a></li>
+                                    <li><a href="#">góp ý thiếu nại:18006616</a></li>
+                                    <li><a href="#">Admin</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6">
+                                <p><img src="~/Images/home.png"> Địa chỉ:An Tây,Bến Cát,Bình Dương</p>
+                             
+                                <p><img src="~/Images/phone.png"> Điện thoại: 0123456789</p>
+
+                            <p><img src="~/Images/email.png"> Email: Tranthanhtrung16121997@gmail.com</p>
+                        </div></DIV>
+                    </div>
+                </div>
+                <div class="row pt-5 mt-5 text-center">
+                    <div class="col-md-12">
+                        <div class="border-top pt-5">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script>  This Project is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="#" target="_blank">Trần Thành Trung</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <div id="fb-root"></div>
+    <script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10";
+  fjs.parentNode.insertBefore(js, fjs);
+
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    <div class="fbchatbox hidden-xs" style="position:fixed;right:10px;bottom:0;z-index:9999">
+        <div class="fb-page" data-href="https://www.facebook.com/Laptop-Tr%E1%BA%A7n-Th%C3%A0nh-Trung-103531154765495" data-small-header="true" data-adapt-container-width="false" data-height="300" data-width="300" data-hide-cover="true" data-show-facepile="true" data-show-posts="false" data-tabs="messages"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/Laptop-Tr%E1%BA%A7n-Th%C3%A0nh-Trung-103531154765495"><a href="https://www.facebook.com/Laptop-Tr%E1%BA%A7n-Th%C3%A0nh-Trung-103531154765495">https://www.facebook.com/Laptop-Tr%E1%BA%A7n-Th%C3%A0nh-Trung-103531154765495</a></blockquote></div></div>
+        <span class="hide" id="closefbchat" style="right:0px;white-space: nowrap;position:absolute;bottom:299px;width:300px;padding:7px; background: #44619D;color: #fff;cursor: pointer;">Tắt Hỗ Trợ</span>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/GioHang.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-migrate-3.0.0.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/owl.carousel.min.js"></script>
+    <script src="~/Scripts/jquery.sticky.js"></script>
+    <script src="~/Scripts/jquery.waypoints.min.js"></script>
+    <script src="~/Scripts/jquery.animateNumber.min.js"></script>
+    <script src="~/Scripts/jquery.fancybox.min.js"></script>
+    <script src="~/Scripts/jquery.stellar.min.js"></script>
+    <script src="~/Scripts/jquery.easing.1.3.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/isotope.pkgd.min.js"></script>
+    <script src="~/Scripts/aos.js"></script>
+    <script src="~/Scripts/main.js"></script>
+    <!-- include js files -->
+    <script src="~/source/assets/dest/js/jquery.js"></script>
+
+    <script src="~/source/assets/dest/vendors/bxslider/jquery.bxslider.min.js"></script>
+    <script src="~/source/assets/dest/vendors/colorbox/jquery.colorbox-min.js"></script>
+    <script src="~/source/assets/dest/vendors/animo/Animo.js"></script>
+    <script src="~/source/assets/dest/vendors/dug/dug.js"></script>
+    <script src="~/source/assets/dest/js/scripts.min.js"></script>
+    <script src="~/source/assets/dest/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/source/assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/source/assets/dest/js/waypoints.min.js"></script>
+    <script src="~/source/assets/dest/js/wow.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script>
+
+    <script src="~/source/assets/dest/js/custom2.js"></script>
+
+
+    <script>
+    if (localStorage.getItem("fbchatclose") == 1) {
+
+        jQuery('.fb-page').toggleClass('hide');
+
+        jQuery('#closefbchat').html('<i class="fa fa-comments fa-2x"></i> Hỗ Trợ Khách Hàng').css({ 'bottom': 0 });
+    }
+
+    setTimeout(function () {
+        $("#closefbchat").removeClass("hide");
+    }, 1000);
+
+
+    jQuery('#closefbchat').click(function () {
+        jQuery('.fb-page').toggleClass('hide');
+        if (jQuery('.fb-page').hasClass('hide')) {
+            localStorage.setItem("fbchatclose", 1);
+
+            jQuery('#closefbchat').html('<i class="fa fa-comments fa-2x"></i> Hỗ Trợ Khách Hàng').css({ 'bottom': 0 });
+        }
+        else {
+            localStorage.setItem("fbchatclose", 0);
+            jQuery('#closefbchat').text('Tắt Hỗ Trợ').css({ 'bottom': 299 });
+        }
+    });
+    </script>
+    <script>
+        function gui() {
+            alert("Cảm ơn bạn đã gửi phản hồi đến chúng tôi")
+        };
+    </script>
+</body>
+</html>
+

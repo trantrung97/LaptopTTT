@@ -1,0 +1,62 @@
+﻿@using Web.Models;
+@model IEnumerable<CartItem>
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    a {
+        color: black;
+    }
+</style>
+<h2>Giỏ hàng của bạn</h2>
+<section class="ftco-section ftco-cart">
+    <div class="Cart-info">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cart-list">
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr class="text-center">
+
+                                <th>Hình Sản Phẩm</th>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Số Lượng Sản Phẩm</th>
+                                <th>Đơn Giá</th>
+                                <th>Tổng Tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{double TongTien = 0; }
+                            @foreach (var item in Model)
+                            {
+                                <tr class="text-center">
+
+                                    <td><a href="/ChiTietSP?MaSP=@item.MaSPham"><img src="~/Images/laptop/@item.AnhSP" style="width:100px" /></a></td>
+
+                                    <td style="width: 250px;">
+                                        @item.TenSPham
+                                    </td>
+
+                                    <td>
+                                        <input type="text" id="@item.MaSPham" class="txtSLGH" value="@item.SoLuong" /><a class="glyphicon glyphicon-cloud-upload " onclick="CapNhat(@item.MaSPham)" aria-hidden="true" style="margin:10px">upload</a><a class="glyphicon glyphicon-trash" aria-hidden="true" onclick="XoaSP(@item.MaSPham)">xóa</a>
+                                    </td>
+                                    <td>@string.Format("{0:0,0}", item.GiaSP)</td>
+
+                                    <td>@string.Format("{0:0,0}", item.TongTien)</td>
+                                </tr>
+                                TongTien += @item.GiaSP * @item.SoLuong;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="TongTien">
+    <h2>Tổng Cộng: <span> @string.Format("{0:0,0}", TongTien) </span> VND</h2>
+</div>
+
+<button class="btn btn-primary" style="margin-left:45%;margin-bottom:300px">@Html.ActionLink("Thanh Toán", "ThanhToan", "GioHang")</button>

@@ -1,0 +1,252 @@
+﻿@model PagedList.IPagedList<Web.Models.TINTUC>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "tintuc";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="~/Content/SanPhamAdmin.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="~/Content/IndexAdmin.css" rel="stylesheet" />
+<h4 style=" color:black; font-family:serif">Quản Lý tin tức</h4>
+<hr />
+
+<!-- Thêm mã phân trang -->
+@*<br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
+
+<!-- Kết thúc -->
+
+
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+               
+                <div class="row" style="padding-top:10px">
+                    <div class="col-sm-4">
+
+                        <div class="show-entries">
+                            @using (Html.BeginForm("tintuc", "Quanly", FormMethod.Get))
+                            {
+                                <p>
+                                    Show @Html.DropDownList("size", (List<SelectListItem>)ViewBag.size, new { @onchange = "this.form.submit();" })
+                                    @Html.Hidden("page", (object)ViewBag.page)
+                                    @Html.Hidden("sortProperty", (object)ViewBag.sortProperty)
+                                    @Html.Hidden("sortOrder", (object)ViewBag.sortOrder)
+                                    @Html.Hidden("searchString", (object)ViewBag.searchValue)
+                                </p>
+                            }
+                        </div>
+                    </div>
+
+
+                    <div class="search-box">
+                        @*<div class="input-group">
+
+                                @using (Html.BeginForm("Index", "AdminCRUD", FormMethod.Get))
+                                {
+
+                                    @Html.TextBox("searchString", (string)ViewBag.searchValue, new { @class = "form-control", @placeholder = "Search" }) <input type="submit" value="Tìm kiếm" />
+                                }
+
+                            </div>*@
+
+                        <form action="/Admin/Quanly/tintuc" method="get" class="formsearch">
+                            <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
+                            <input class="" id="searchString" name="searchString" placeholder="Search" type="search">
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Tên Tin Tức</th>
+                        <th>Tóm Tắt</th>
+                        <th>Hình Minh Họa</th>
+                        <th>Href</th>
+                        <th>Ngày đăng</th>
+                        <th><i class="fa fa-sort"></i> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@Html.DisplayFor(modelItem => item.TenTT)</td>
+                            <td>$@Html.DisplayFor(modelItem => item.TomTat)</td>
+                            <td>@Html.DisplayFor(modelItem => item.HinhMinhHoa)</td>
+                            <td>@Html.DisplayFor(modelItem => item.href)</td>
+                            <td>@Html.DisplayFor(modelItem => item.date)</td>
+                            <td>
+                                <button type="button" rel="tooltip" class="btn btn-info btn-round btn-just-icon btn-sm" data-original-title="" title="">
+                                    <a href="@Url.Action("Edit", "TINTUCs", new { id = item.STT })">
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                </button>
+                               
+
+                                <button type="button" rel="tooltip" class="btn btn-danger btn-round btn-just-icon btn-sm" data-original-title="" title="">
+                                    <a href="@Url.Action("Delete", "TINTUCs", new { id = item.STT })">
+                                        <i class="material-icons">
+                                            close
+                                        </i>
+                                    </a>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+
+
+
+                </tbody>
+            </table>
+            <div class="clearfix">
+                <div class="hint-text">Showing @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) out of @Model.PageCount entries</div>
+                <ul class="pagination">
+
+                    <li class="page-item">@Html.PagedListPager(Model, page => Url.Action("tintuc", new { page, size = ViewBag.currentSize }))</li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .btncreate {
+            background-color: red;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            color: white;
+        }
+    </style>
+    <script>
+        function validateCreate() {
+            var x = document.forms["myForm"]["TenTT"].value;
+
+            var g = document.forms["myForm"]["TT"].value;
+            var h = document.forms["myForm"]["Href"].value;
+
+
+            if (x == "" || g == "" || h == "") {
+                alert("Vui lòng điền đầy đủ thông tin sách trước khi tạo !");
+                return false;
+            }
+        }
+
+    </script>
+    <h4 style="font-family:serif">Thêm Tin Tức Mới</h4>
+    <hr />
+
+    <form action="/Admin/Quanly/Createtintuc" method="post" name="myForm">
+        <div class="context">
+            <div class="text_left">
+                <p style="font-weight:bold;font-size:20px;">Thông tin Tin Tức</p>
+                <br />
+
+
+                <table class="table_A">
+                    <tr>
+                        <td>
+
+                            <input type="text" name="TenTT" placeholder="Tên tin tức">
+
+                        </td>
+
+
+                    <tr>
+                        <td><input type="text" name="TT" placeholder="tóm tắt" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="href" placeholder="href" /></td>
+                    </tr>
+
+                </table>
+                <br />
+
+                <div>
+
+                    @*<input type="submit" class="btncreate" onclick="return validateCreate()" style="width:130px; background-color:#17aa67" value="Tạo Sách" />*@
+                    <button class="btn_Tao" type="submit" value="Tao" onclick="return validateCreate()">
+                        <i class="material-icons" style="font-size:13px"></i>
+                        Tạo
+                    </button>
+
+
+                </div>
+            </div>
+            <div class="text_right">
+
+                <img id="pictureUpload" width=60% height="250px" />
+                @section upload{
+                    <script>
+                        $(function () {
+                            //đăng ký sự kiện click nút btnUpload
+                            $('#btnUpload').click(function () {
+                                $('#fileUpload').trigger('click');
+
+                            });
+                            // Bắt sự kiện change data của file Upload
+                            $('#fileUpload').change(function () {
+                                //Kiểm tra trình duyệt có hỗ trợ FormData object không.
+                                if (window.FormData !== undefined) {
+                                    //lấy dữ liệu trên fileUpload
+                                    var fileUpload = $("#fileUpload").get(0);
+                                    var files = fileUpload.files;
+                                    //tạo đối tượng formdata
+                                    var formData = new FormData();
+                                    //đưa dữ liệu vào form
+                                    formData.append('file', files[0]);
+                                    $.ajax(
+                                        {
+                                            type: 'POST',
+                                            url: '/Quanly/ProcessUpload',
+                                            contentType: false,
+                                            processData: false,
+                                            data: formData,
+                                            success: function (urlImage) {
+                                                $('#pictureUpload').attr('src', urlImage);
+                                                $('#picture').val(urlImage);
+
+                                            },
+                                            error: function (err) {
+                                                alert('co loi khi upload:' + err.statusText);
+                                            }
+                                        });
+
+                                }
+                            });
+                        });
+                    </script>
+
+                }
+                <br />
+                <br />
+                <div class="from-inline">
+                    <input type="text" name="picture" id="picture" style="display:none;" />
+                    <input type="file" id="fileUpload" name="fileUpload" style="display:none;" />
+                    <input type="button" id="btnUpload" value="Chọn hình" class="btn_Choose" />
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+</body>

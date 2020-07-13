@@ -1,0 +1,92 @@
+﻿@using Web.Models
+
+@using System.Security.Claims;
+@model IEnumerable<CartItem>
+@{
+    ViewBag.Title = "ThanhToan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12" style="height:700px">
+    <form class="form-horizontal" action="/GioHang/thanhtoanthanhcong" method="post">
+        <section class="ftco-section ftco-cart">
+            <div class="Cart-info">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="cart-list">
+                            <table class="table">
+                                <thead class="thead-primary">
+                                    <tr class="text-center">
+
+                                        <th>Hình Sản Phẩm</th>
+                                        <th>Tên Sản Phẩm</th>
+                                        <th>Số Lượng Sản Phẩm</th>
+                                        <th>Đơn Giá</th>
+                                        <th>Tổng Tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{double TongTien = 0; }
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="text-center">
+
+                                            <td><img src="~/images/laptop/@item.AnhSP" style="width:100px" /></td>
+
+                                            <td style="width: 250px;">
+                                                @item.TenSPham
+                                            </td>
+
+                                            <td>
+                                                <input type="text" style="border:none" readonly id="@item.MaSPham" class="txtSLGH" value="@item.SoLuong" name="SL" /><a class="glyphicon glyphicon-upload" onclick="CapNhat(@item.MaSPham)" aria-hidden="true" style="margin:10px"></a><a class="glyphicon glyphicon-trash" aria-hidden="true" onclick="XoaSP(@item.MaSPham)"></a>
+                                            </td>
+                                            <td><input type="text" style="border:none" readonly value="@item.GiaSP" name="gia" /></td>
+
+                                            <td>@string.Format("{0:0,0}", item.TongTien)<input type="text" style="display:none" value="@item.MaSPham" name="masp" /></td>
+                                        </tr>
+                                        TongTien += @item.GiaSP * @item.SoLuong;
+                                        
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <input name="tien" style="display:none" value="@TongTien" />
+        <div class="TongTien">
+            <h2>Tổng Cộng: <span><input type="number" style="border:none" readonly value="@TongTien" name="tongtien" /> </span> VND</h2>
+        </div>
+        <h2>THÔNG TIN ĐẶT HÀNG</h2>
+
+        @{
+            QLLaptopEntities db = new QLLaptopEntities();
+            KHACH_HANG kh = db.KHACH_HANG.Find(Session["KhachHang"]);
+
+        }
+
+        <table class="table" style="float:left;width:50%">
+            <thead class="thead-primary">
+                <tr>
+
+                    <th scope="col">Họ và Tên</th>
+                    <th scope="col">Địa chỉ</th>
+                    <th scope="col">số điện Thoại</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td><input type="text" style="border:none" readonly value="@kh.TenKH" name="TenKH" /></td>
+                    <td><input type="text" value="@kh.DiaChi" name="diachi" /></td>
+                    <td><input type="text" value="@kh.SDT" name="sdt" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>giao hàng tiêu chuẩn:7ngày.</p>
+        <br /><br />
+        <br /><br /><br />
+        <button style="margin-left:47%"  name="singlebutton" class="btn btn-primary" id="sub-DangKy" type="submit" value="">Mua Hàng</button>
+
+    </form>
+</div>

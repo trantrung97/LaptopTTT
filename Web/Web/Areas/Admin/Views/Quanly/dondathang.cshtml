@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "dondathang";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .atrongday{color:black}
+</style>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>Tên khách hàng</th>
+            <th>Địa chỉ</th>
+            <th>số điện thoại</th>
+            <th>Email</th>
+            <th>tổng tiền</th>
+            <th>ngày giao hàng</th>
+            <th>PTTT</th>
+            <th>Đã giao</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.sklist)
+            {
+            <tr>
+                <td>@item.TenKH</td>
+                <td>@item.DiaChi</td>
+                <td>@item.SDT</td>
+                <td>@item.Email</td>
+                <td>@item.TriGiaDH</td>
+                <td>@item.NgayGiaoHang</td>
+                <td>@item.PTTT</td>
+
+                <td>
+                    @{ if (item.Dagiao == true)
+                        {
+                            @Html.CheckBox("Dagiao", true)
+                        }
+                        else
+                        { 
+                            <button  type="button" rel="tooltip" class="btn btn-info btn-round btn-just-icon btn-sm" data-original-title="" title="">
+                                    @Html.ActionLink("Giao", "Edit", new { id=item.MaDH },new { @class= "atrongday"})
+                            </button>
+                        }
+                    }
+                </td>
+            </tr>
+                        }
+
+    </tbody>
+
+</table>
+
+@using (Html.BeginForm("Export", "Quanly", FormMethod.Post))
+{
+    <input type="submit" value="Export" />
+}

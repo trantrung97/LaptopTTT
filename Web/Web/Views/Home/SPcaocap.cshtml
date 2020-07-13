@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using Web.Models
+@model List<SANPHAM>
+
+
+<link href="~/css/bootstrap335/bootstrap.min.css" rel="stylesheet" />
+
+<link href="~/Content/index.css" rel="stylesheet" />
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up">
+           
+                <div class="product">
+                    <a href="/Home/ChiTietSP?ID=@item.MaSP" style="text-decoration:none;">
+                        <p style="text-align:center;margin-top:10px;">
+                            <img src="~/Images/laptop/@item.HinhMinhHoa" class="img-responsive" alt="Sản phẩm 1">
+                        <p style="text-align:center;color:red;font-size:18px">@item.TenSP</p>
+                        <p>
+                            Màn hình: @item.ManHinh
+                        </p>
+                        <p>
+                            CPU : @item.CPU
+                        </p>
+                        <p>
+                            RAM : @item.RAM
+                        </p>
+                        <div class="caption">
+                            <div class="blur"></div>
+                            <div class="caption-text">
+                                <h3 style="border-top:2px solid white;border-bottom:2px solid white;padding:10px;">@string.Format("{0:0,0}", item.DonGia) VND</h3>
+                                <p>...</p> <a class=" btn btn-default" style="background-color:#FFFF00;font-weight:bold" href="/Home/ChiTietSP?ID=@item.MaSP"><span class="glyphicon glyphicon-shopping-cart"> Mua</span></a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+          
+            }
+        </div>
+

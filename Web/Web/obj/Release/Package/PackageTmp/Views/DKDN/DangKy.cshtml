@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <h2>Tạo tài khoản</h2>
+
+        <form class="col-md-12" action="/DKDN/DangKy" method="post">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>đăng ký ở đây</legend>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-6 control-label" for="textinput">Họ và Tên</label>
+                    <div class="col-md-6">
+                        <input name="HoTen" id="HoTen" placeholder="Tên" class="form-control input-md" required="" type="text">
+                        <span class="help-block"> </span>
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Email</label>
+                    <div class="col-md-6">
+                        <input name="Email" id="Email" placeholder="Email" class="form-control input-md" required="" type="text">
+                        <span class="help-block"> </span>
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Điện thoại</label>
+                    <div class="col-md-6">
+                        <input name="SDT" id="SDT" placeholder="Điện thoại" class="form-control input-md" required="" type="number">
+                        <span class="help-block"> </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Địa chỉ</label>
+                    <div class="col-md-6">
+                        <input name="DiaChi" id="DiaChi" placeholder="địa chỉ" class="form-control input-md" required="" type="text">
+                        <span class="help-block"> </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Tên đăng nhập</label>
+                    <div class="col-md-6">
+                        <input name="TenDN" id="TenDN" placeholder="Tên đăng nhập" class="form-control input-md" required="" type="text">
+                        <span class="help-block"> </span>
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">Password</label>
+                    <div class="col-md-6">
+                        <input name="MatKhau" id="MatKhau" placeholder="Password" class="form-control input-md" required="" type="password">
+                        <span class="help-block"> </span>
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textinput">nhập lại Password</label>
+                    <div class="col-md-6">
+                        <input name="LaiMK" id="LaiMK" placeholder="Confirm Password" class="form-control input-md" required="" type="password">
+                        <span class="help-block"> </span>
+                    </div>
+                </div>
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton"> </label>
+                    <div class="col-md-6">
+                        <button name="singlebutton" class="btn btn-primary" id="sub-DangKy" type="submit" value="Đăng Ký">Submit</button>
+                    </div>
+                </div>
+                <p id="ThongBao"></p>
+            </fieldset>
+        </form>
+
+    </div>
+</div>

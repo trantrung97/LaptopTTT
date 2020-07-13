@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "contact";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>contact</h2>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>Tên khách hàng</th>
+            <th>Email</th>
+            <th>số điện thoại</th>
+            <th>Phản hồi</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.Phone</td>
+                <td>@item.Comments</td>
+            </tr>
+                        }
+    </tbody>
+</table>
+
+
+    <br />
+    <hr />
+

@@ -1,0 +1,96 @@
+﻿@using Web.Models
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="ftco-blocks-cover-1">
+    <div class="site-section-cover overlay" style="background-image:url(../../images/bannerlaptop.jpg)">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-5" data-aos="fade-right">
+                    <h1 class="mb-3 text-white">THẾ HỆ THỨ 10,GIỚI THIỆU MỘT ĐẲNG CẤP MÁY TÍNH XÁCH TAY MỚI.</h1>
+                    <p>Mạnh mẽ,mỏng và nhẹ,sạc nhanh:sạc 30 phút sử dụng 4 giờ. Khả năng kết nối tốt nhất với intel Wi-Fi 6(Gig+).</p>
+                    <p class="d-flex align-items-center">
+                        <a href="https://www.youtube.com/embed/P_Pzi06694U" data-fancybox class="play-btn-39282 mr-3"><span class="icon-play"></span></a>
+                        <span class="small">Watch the video</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="site-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="heading-39101 mb-5">
+                    <span class="backdrop">LAPTOP</span>
+                    <span class="subtitle-39191">ASUS</span>
+                    <h3>ZenBook 14 (UX431)</h3>
+                </div>
+                <p>Mẫu máy 14 inch gọn nhẹ với thiết kế 4 loa độc đáo cho chất lượng âm thanh vượt bậc. Hiệu năng hiện đại của vi xử lý Intel thế hệ mới nhất và lưu trữ SSD NVMe 512GB cho tốc độ vận hành nhanh.</p>
+                <p>mẫu máy tiên phong xu hướng laptop hiện đại năm 2019 với ổ lưu trữ SSD dung lượng cao lên đến 512GB, 8G RAM và xi xử lý Intel thế hệ 8.</p>
+                <p><a href="/Home/ChiTietSP?ID=104">chi tiết...</a></p>
+            </div>
+            <div class="col-md-6" data-aos="fade-right">
+                <img src="~/images/asusmoi.png" alt="Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-4">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-sm-6 col-sm-offset-3 text-center"><h2>THƯƠNG HIỆU LAPTOP</h2></div>
+         
+
+            <table style="width:100%;text-align:center">
+                <tr>
+                    <td style="width:16%"><a href="/Home/ChonSP?IDNSX=6"><img src="~/Images/apple.jpg"</a></td>
+                    <td style="width:16%"><a href="/Home/ChonSP?IDNSX=1"><img src="~/Images/Acer.png"</a></td>
+                    <td style="width:16%"><a href="/Home/ChonSP?IDNSX=2"><img src="~/Images/asus.png"</a></td>
+                    <td style="width:16%"><a href="/Home/ChonSP?IDNSX=4"><img src="~/Images/Hp.png"</a></td>
+                    <td style="width:16%"><a href="/Home/ChonSP?IDNSX=3"><img src="~/Images/dell.png"</a></td>
+                    <td style="width:16%"><a href="/Home/ChonSP?IDNSX=5"><img src="~/Images/Msi.png"</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="site-section">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-7">
+                <div class="heading-39101 mb-5">
+                    <span class="backdrop text-center">LAPTOP</span>
+                    <span class="subtitle-39191">Sản Phẩm</span>
+                    <h3>Cao cấp dành cho game thủ</h3>
+                </div>
+            </div>
+        </div>
+        @Html.Action("SPcaocap", "Home")
+    </div>
+</div>
+<div class="site-section">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-10">
+                <a href="/Home/LoaiSP?IDLoai=4">
+                    <div class="heading-39101 mb-5">
+                        <span class="backdrop text-center">SPECIAL</span>
+                        <span class="subtitle-39191">Bàn Phím</span>
+                        <h3>Gaming</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        @Html.Action("banphimcaocap", "Home")
+    </div>
+</div>
+
+@Html.Action("cpu", "Home")
+
+

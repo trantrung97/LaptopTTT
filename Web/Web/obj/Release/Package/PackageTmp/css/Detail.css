@@ -1,0 +1,111 @@
+﻿
+.noidung {
+    display: inline-block;
+    width: 45%;
+}
+
+.anh {
+    padding-bottom: 10%;
+    padding-left:3%;
+
+    display: inline-block;
+    width: 100%;
+}
+
+
+.anh img {
+    
+    background-color: white;
+    width: 60%;
+    border: 1px solid white;
+    border-radius: 100px 0px 100px 0px;
+    box-shadow: 15px 5px 10px 2px #8680a1;
+}
+
+
+
+
+#btn-right {
+    margin-right:3px;
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 15px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#btn-left {
+    background-color: #f44336;
+    border: none;
+    color: white;
+    padding: 15px 60px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.navhead:hover
+{
+    cursor:pointer;
+    text-decoration: none;
+}
+.navhead {
+    color: #4e9df7;
+}
+.ct_tieude{
+     font-size:50px;
+     font-weight:bold;
+     color:red;
+     margin-top:5%;
+     text-align:center;
+ }
+ .ct_hinhanh{
+     text-align:center;
+	width:60%;
+	height:70%;
+	transition: all 0.5s ease;
+ }
+.ct_hinhanh:hover {
+     transform: scale(1.1);
+    }
+.ct_ten{
+  
+	margin-top:10px;
+    font-size:20px;
+   font-weight:bold;
+}
+.ct_dongia{
+    margin-top:10px;
+	font-size:24px;
+       font-weight:bold;
+       color:red;
+}
+.ct_btn{
+    text-decoration:none;
+    border-radius: 10px;
+	background-color:chartreuse;
+	cursor:pointer;
+	font-size:25px;
+    padding:5px;
+}
+.ct_ND1{
+    width:67%;
+    float:left;
+    background-color:white;
+    margin-right:1%;
+    border-radius:10px;
+    padding:9px;
+}
+.ct_ND2{
+    width:28%;
+    float:right;
+    background-color:white;
+    border-radius:10px;
+    padding:9px;
+}
